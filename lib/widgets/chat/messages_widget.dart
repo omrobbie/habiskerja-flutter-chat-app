@@ -1,7 +1,8 @@
-import 'package:chat/widgets/chat/bubble_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'bubble_widget.dart';
 
 class MessagesWidget extends StatefulWidget {
   const MessagesWidget({super.key});

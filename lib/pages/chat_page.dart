@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/chat/chat_input.dart';
+import '../widgets/chat/messages_widget.dart';
+
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
 
@@ -43,6 +46,16 @@ class _ChatPageState extends State<ChatPage> {
             },
           ),
         ],
+      ),
+      body: const Center(
+        child: Column(
+          children: [
+            Expanded(
+              child: MessagesWidget(),
+            ),
+            ChatInputWidget(),
+          ],
+        ),
       ),
     );
   }
