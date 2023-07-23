@@ -1,4 +1,6 @@
+import 'package:chat/pages/chat_page.dart';
 import 'package:chat/pages/launcher_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +37,18 @@ class MainApp extends StatelessWidget {
           ),
           home: snapshot.connectionState != ConnectionState.done
               ? const LauncherPage()
-              : const AuthPage(),
+              : StreamBuilder(
+                  stream: FirebaseAuth.instance.authStateChanges(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const LauncherPage();
+                    }
+                    if (snapshot.hasData) {
+                      return const ChatPage();
+                    }
+                    return const AuthPage();
+                  },
+                ),
         );
       },
     );
