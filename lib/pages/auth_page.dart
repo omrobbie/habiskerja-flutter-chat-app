@@ -52,7 +52,11 @@ class _AuthPageState extends State<AuthPage> {
         await FirebaseFirestore.instance
             .collection('users')
             .doc(authResult.user!.uid)
-            .set({'username': username, 'email': email, 'image_url': url});
+            .set({
+          'username': username,
+          'email': email,
+          'image_url': url,
+        });
       }
     } on PlatformException catch (err) {
       String message = 'An error occured, please check your credentials!';
